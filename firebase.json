@@ -12,12 +12,21 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(css|svg)",
+        "source": "**/*.@(js|css)",
         "headers": [
           {
             "key": "Content-Type",
-            "value": "text/css"
+            "value": "text/javascript"
           },
+          {
+            "key": "Content-Type",
+            "value": "text/css"
+          }
+        ]
+      },
+      {
+        "source": "**/*.svg",
+        "headers": [
           {
             "key": "Content-Type",
             "value": "image/svg+xml"
