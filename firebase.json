@@ -18,20 +18,20 @@
     ],
     "headers": [
       {
-        "source": "**/*.css",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/css"
-          }
-        ]
-      },
-      {
-        "source": "**/*.svg",
+        "source": "/(.*).svg",
         "headers": [
           {
             "key": "Content-Type",
             "value": "image/svg+xml"
+          }
+        ]
+      },
+      {
+        "source": "/(.*).css",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css"
           }
         ]
       }
