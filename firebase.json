@@ -9,6 +9,21 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(css|svg)",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/css"
+          },
+          {
+            "key": "Content-Type",
+            "value": "image/svg+xml"
+          }
+        ]
+      }
     ]
   }
 }
