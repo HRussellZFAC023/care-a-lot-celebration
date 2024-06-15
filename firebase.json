@@ -10,14 +10,16 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
     "headers": [
       {
-        "source": "**/*.@(js|css)",
+        "source": "**/*.css",
         "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/javascript"
-          },
           {
             "key": "Content-Type",
             "value": "text/css"
