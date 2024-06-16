@@ -1,24 +1,118 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { createCloud } from './cloud.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+const createApp = () => {
+  const app = document.createElement('div');
+  const canvas = createCanvas();
+  app.appendChild(canvas);
+  createAndPositionClouds(app, 40);
+  return app;
+};
+
+const createCanvas = () => {
+  const canvasContainer = document.createElement('div');
+  const canvas = document.createElement('canvas');
+  canvasContainer.appendChild(canvas);
+  canvasContainer.className = 'canvas-container';
+  canvas.className = 'canvas';
+
+  const resizeAndDraw = () => {
+    const canvasDimensions = canvas.getBoundingClientRect();
+    canvas.width = canvasDimensions.width;
+    canvas.height = canvasDimensions.height;
+    drawBackground(canvas);
+    drawFrills(canvas);
+  };
+
+
+  window.addEventListener('resize', resizeAndDraw);
+  window.addEventListener('load', resizeAndDraw);
+
+  return canvasContainer;
+};
+
+const drawBackground = (canvas) => {
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ff999e'; // light Pink
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+};
+
+const drawFrills = (canvas) => {
+  const ctx = canvas.getContext('2d');
+  const frillSpacing = 20;
+  const frillRadius = 5;
+  const frillColor = '#fa70b5'; // Orchid Pink
+
+  // Draw top and bottom frills
+  for (let x =  frillSpacing; x < canvas.width - frillSpacing; x += frillSpacing) {
+    drawFrill(ctx, x, frillSpacing, frillRadius, frillColor); 
+    drawFrill(ctx, x, canvas.height - frillSpacing, frillRadius, frillColor); 
+  }
+
+  // Draw left and right frills
+  for (let y = frillSpacing; y < canvas.height - frillSpacing; y += frillSpacing) {
+    drawFrill(ctx, frillSpacing, y, frillRadius, frillColor); 
+    drawFrill(ctx, canvas.width - frillSpacing, y, frillRadius, frillColor); 
+  }
+};
+
+
+const drawFrill = (ctx, x, y, radius, color) => {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+  ctx.fillStyle = color;
+  ctx.fill();
+};
+
+const createAndPositionClouds = (app, totalClouds) => {
+  const clouds = [];
+
+  for (let i = 0; i < totalClouds; i++) {
+    const cloud = createCloud();
+    clouds.push(cloud);
+    app.appendChild(cloud);
+  }
+
+  const positionClouds = () => {
+    const aspectRatio = window.innerHeight / window.innerWidth;
+     let edgeCloudsHorizontal, edgeCloudsVertical;
+
+    if (aspectRatio > 1) { 
+      edgeCloudsVertical = Math.round(totalClouds / 3);
+      edgeCloudsHorizontal = (totalClouds - edgeCloudsVertical * 2) / 2;
+    } else { 
+      edgeCloudsHorizontal = Math.round(totalClouds / 3); 
+      edgeCloudsVertical = (totalClouds - edgeCloudsHorizontal * 2) / 2;
+    }
+    clouds.forEach((cloud, i) => {
+      cloud.style.position = 'absolute';
+      if (i < edgeCloudsHorizontal) {
+        cloud.style.top = '0';
+        cloud.style.left = `${(i / edgeCloudsHorizontal) * 100}%`;
+        cloud.style.right = '';
+        cloud.style.bottom = '';
+      } else if (i < edgeCloudsHorizontal + edgeCloudsVertical) {
+        cloud.style.top = `${((i - edgeCloudsHorizontal) / edgeCloudsVertical) * 100}%`;
+        cloud.style.right = '0';
+        cloud.style.left = '';
+        cloud.style.bottom = '';
+      } else if (i < edgeCloudsHorizontal * 2 + edgeCloudsVertical) {
+        cloud.style.bottom = '0';
+        cloud.style.left = `${((i - edgeCloudsHorizontal - edgeCloudsVertical) / edgeCloudsHorizontal) * 100}%`;
+        cloud.style.top = '';
+        cloud.style.right = '';
+      } else {
+        cloud.style.top = `${((i - edgeCloudsHorizontal * 2 - edgeCloudsVertical) / edgeCloudsVertical) * 100}%`;
+        cloud.style.left = '0';
+        cloud.style.right = '';
+        cloud.style.bottom = '';
+      }
+    });
+  };
+  window.addEventListener('resize', positionClouds);
+  positionClouds();
+};
+
+
+document.querySelector('#app').appendChild(createApp());

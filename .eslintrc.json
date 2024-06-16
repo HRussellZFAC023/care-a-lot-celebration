@@ -1,0 +1,6 @@
+{
+    "extends": "recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}
