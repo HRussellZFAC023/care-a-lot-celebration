@@ -26,7 +26,7 @@ export const createAndPositionStickers = () => {
 
     stickers.forEach((sticker, index) => {
         const img = new Image();
-        img.src = sticker;
+        img.src = "./assets/" + sticker;
         img.className = 'sticker';
         img.onload = () => positionStickers(index, img);
         stickerElements.push(img);
