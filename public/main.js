@@ -1,13 +1,34 @@
 import './style.css'
 import { createCloud } from './cloud.js'
+import { createAndPositionStickers } from './sticker.js';
 
+window.onload = (() => {
 
-const createApp = () => {
-  const app = document.createElement('div');
-  const canvas = createCanvas();
+  const app = document.querySelector('#app');
+  const canvas = createCanvas()
   app.appendChild(canvas);
-  createAndPositionClouds(app, 40);
-  return app;
+  resizeAndDrawCanvas();
+  window.addEventListener('resize', resizeAndDrawCanvas);
+
+  const clouds = createAndPositionClouds(40);
+  clouds.forEach(cloud => app.appendChild(cloud));
+
+  const stickerElements = createAndPositionStickers();
+  stickerElements.forEach(sticker => app.appendChild(sticker));
+
+
+ 
+});
+
+
+
+const resizeAndDrawCanvas = () => {
+  const canvas = document.querySelector('.canvas');
+  const canvasDimensions = canvas.getBoundingClientRect();
+  canvas.width = canvasDimensions.width;
+  canvas.height = canvasDimensions.height;
+  drawBackground(canvas);
+  drawFrills(canvas);
 };
 
 const createCanvas = () => {
@@ -16,19 +37,6 @@ const createCanvas = () => {
   canvasContainer.appendChild(canvas);
   canvasContainer.className = 'canvas-container';
   canvas.className = 'canvas';
-
-  const resizeAndDraw = () => {
-    const canvasDimensions = canvas.getBoundingClientRect();
-    canvas.width = canvasDimensions.width;
-    canvas.height = canvasDimensions.height;
-    drawBackground(canvas);
-    drawFrills(canvas);
-  };
-
-
-  window.addEventListener('resize', resizeAndDraw);
-  window.addEventListener('load', resizeAndDraw);
-
   return canvasContainer;
 };
 
@@ -45,15 +53,15 @@ const drawFrills = (canvas) => {
   const frillColor = '#fa70b5'; // Orchid Pink
 
   // Draw top and bottom frills
-  for (let x =  frillSpacing; x < canvas.width - frillSpacing; x += frillSpacing) {
-    drawFrill(ctx, x, frillSpacing, frillRadius, frillColor); 
-    drawFrill(ctx, x, canvas.height - frillSpacing, frillRadius, frillColor); 
+  for (let x = frillSpacing; x < canvas.width - frillSpacing; x += frillSpacing) {
+    drawFrill(ctx, x, frillSpacing, frillRadius, frillColor);
+    drawFrill(ctx, x, canvas.height - frillSpacing, frillRadius, frillColor);
   }
 
   // Draw left and right frills
   for (let y = frillSpacing; y < canvas.height - frillSpacing; y += frillSpacing) {
-    drawFrill(ctx, frillSpacing, y, frillRadius, frillColor); 
-    drawFrill(ctx, canvas.width - frillSpacing, y, frillRadius, frillColor); 
+    drawFrill(ctx, frillSpacing, y, frillRadius, frillColor);
+    drawFrill(ctx, canvas.width - frillSpacing, y, frillRadius, frillColor);
   }
 };
 
@@ -65,24 +73,23 @@ const drawFrill = (ctx, x, y, radius, color) => {
   ctx.fill();
 };
 
-const createAndPositionClouds = (app, totalClouds) => {
+const createAndPositionClouds = (totalClouds) => {
   const clouds = [];
 
   for (let i = 0; i < totalClouds; i++) {
     const cloud = createCloud();
     clouds.push(cloud);
-    app.appendChild(cloud);
   }
 
   const positionClouds = () => {
     const aspectRatio = window.innerHeight / window.innerWidth;
-     let edgeCloudsHorizontal, edgeCloudsVertical;
+    let edgeCloudsHorizontal, edgeCloudsVertical;
 
-    if (aspectRatio > 1) { 
+    if (aspectRatio > 1) {
       edgeCloudsVertical = Math.round(totalClouds / 3);
       edgeCloudsHorizontal = (totalClouds - edgeCloudsVertical * 2) / 2;
-    } else { 
-      edgeCloudsHorizontal = Math.round(totalClouds / 3); 
+    } else {
+      edgeCloudsHorizontal = Math.round(totalClouds / 3);
       edgeCloudsVertical = (totalClouds - edgeCloudsHorizontal * 2) / 2;
     }
     clouds.forEach((cloud, i) => {
@@ -112,7 +119,6 @@ const createAndPositionClouds = (app, totalClouds) => {
   };
   window.addEventListener('resize', positionClouds);
   positionClouds();
+  return clouds;
 };
 
-
-document.querySelector('#app').appendChild(createApp());

@@ -145,3 +145,9 @@ body {
         height: 10em;
     }
 }
+
+.sticker {
+    position: fixed;
+    width: 15vw;
+    z-index: 3;
+}

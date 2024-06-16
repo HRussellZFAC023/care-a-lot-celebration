@@ -10,7 +10,7 @@ export function createCloud() {
     const animationDuration = getRandom(4, 8);
     cloud.style.animationDuration = `${animationDuration}s`;
 
-    const puffCount = getRandom(0, 12);
+    const puffCount = getRandom(1, 12);
     for (let i = 0; i < puffCount; i++) {
         const puff = document.createElement('div');
         puff.className = `puff`;
