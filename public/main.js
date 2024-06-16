@@ -86,7 +86,7 @@ const createAndPositionClouds = (app, totalClouds) => {
       edgeCloudsVertical = (totalClouds - edgeCloudsHorizontal * 2) / 2;
     }
     clouds.forEach((cloud, i) => {
-      cloud.style.position = 'absolute';
+
       if (i < edgeCloudsHorizontal) {
         cloud.style.top = '0';
         cloud.style.left = `${(i / edgeCloudsHorizontal) * 100}%`;

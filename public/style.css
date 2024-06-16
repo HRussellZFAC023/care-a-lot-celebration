@@ -67,7 +67,7 @@ body {
 
 .cloud {
     border-radius: 50%;
-    position: absolute;
+    position: fixed;
     width: 10em;
     height: 5em;
     animation: float 6s ease-in-out infinite;
@@ -76,7 +76,7 @@ body {
 }
 
 .puff {
-    position: absolute;
+    position: fixed;
     border-radius: 50%;
     width: 10em;
     height: 5em;
