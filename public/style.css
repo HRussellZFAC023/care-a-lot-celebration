@@ -105,7 +105,7 @@ body {
         width: 5em;
         height: 2.5em;
     }
-
+  
 
 }
 
@@ -140,5 +140,6 @@ body {
 .sticker {
     position: fixed;
     width: 15vw;
+    min-width: 7em;
     z-index: 3;
 }
