@@ -40,7 +40,7 @@ window.onload = (() => {
 let arrowAngle = Math.PI * 2;
 
 export const animateArrow = (canvas, direction) => {
-  const angleChange = direction === 'up' ? 0.6 : -0.6;
+  const angleChange = direction === 'up' ? 0.3 : -0.3;
   const animationInterval = setInterval(() => {
     arrowAngle += angleChange;
     resizeAndDrawCanvas();

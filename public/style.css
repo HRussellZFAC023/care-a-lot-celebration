@@ -114,6 +114,17 @@ body {
     border-radius: 1em;
 }
 
+@media screen and (max-width: 425px) {
+
+    .cloud,
+    .puff {
+        width: 3em;
+        height: 1.5em;
+        z-index: 0;
+    }
+
+
+}
 
 @media screen and (max-width: 768px) {
 
