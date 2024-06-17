@@ -22,11 +22,11 @@ window.onload = (() => {
   const contentContainer = document.createElement('div');
   const buttonContainer = document.createElement('div');
   contentContainer.className = 'content-container';
-  buttonContainer.className = 'button-container';
+  buttonContainer.className = 'button-wrapper';
   const yesButton = createButton('Yes', 'up');
-  yesButton.className = 'yes-button';
+  yesButton.className = 'cute-button yes-button';
   const noButton = createButton('No', 'down');
-  noButton.className = 'no-button';
+  noButton.className = 'cute-button no-button';
   buttonContainer.appendChild(noButton);
   buttonContainer.appendChild(yesButton);
 
@@ -70,3 +70,6 @@ const resizeAndDrawCanvas = () => {
   drawArrow(canvas, arrowAngle);
 };
 
+export function hideTikTok() {
+  document.querySelector('.tiktok-embed').style.display = 'none';
+}

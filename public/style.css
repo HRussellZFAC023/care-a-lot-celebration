@@ -32,6 +32,17 @@
     --mint-green: #7fffaa;
     --seafoam-green: #6fffc1;
 
+
+    --yes-button: #88d8c0;
+    --no-button: #f4c6c9;
+
+    --yes-button-text: #003366;
+    --no-button-text: #5C2B29;
+
+    --yes-button-border: #7fc2b3;
+    --no-button-border: #e6a8ac;
+
+
 }
 
 html,
@@ -46,12 +57,14 @@ body {
     overflow-y: hidden;
     top: 0;
     bottom: 0;
+
+}
+
+* {
     font-family: "Emilys Candy", serif;
     font-weight: 400;
     font-style: normal;
 }
-
-
 
 @keyframes float {
     0% {
@@ -162,4 +175,41 @@ body {
     align-items: start;
     grid-gap: 20px;
     /* Adjust this value to add space between grid items */
+}
+
+
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-top: 1.5em;
+}
+
+.cute-button {
+    padding: 0.625em 1.25em;
+    border-radius: 3.125em;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 6.25em;
+    z-index: 1;
+    margin: 0 auto;
+}
+
+.cute-button:hover {
+    transform: scale(1.3);
+}
+
+.yes-button {
+    background-color: var(--yes-button);
+    color: var(--yes-button-text);
+    border: 2px solid var(--yes-button-border);
+}
+
+.no-button {
+    background-color: var(--no-button);
+    color: var(--no-button-text);
+    border: 2px solid var(--no-button-border);
 }
