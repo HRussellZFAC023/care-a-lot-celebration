@@ -7,7 +7,7 @@ export const drawCareOMeter = (canvas) => {
     ctx.shadowOffsetX = 5;
     ctx.shadowOffsetY = 5;
 
-    ctx.font = '24px Arial';
+    ctx.font = '30px Emilys Candy';
     ctx.fillStyle = '#ffffff';
     ctx.fillText('Care-O-Meter', canvas.width / 2 - ctx.measureText('Care-O-Meter').width / 2, canvas.height / 4 + 80);
 

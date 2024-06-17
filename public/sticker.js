@@ -13,7 +13,6 @@ export const createAndPositionStickers = () => {
     const positionStickers = (index, img) => {
         let positions;
         if (window.innerWidth <= 768) {
-            // For mobile devices, randomly position the images along the edges
             positions = [
                 { left: getRandom(0, window.innerWidth - img.width), top: 0 },
                 { left: window.innerWidth - img.width, top: getRandom(0, window.innerHeight - img.height) },
@@ -21,7 +20,6 @@ export const createAndPositionStickers = () => {
                 { left: 0, top: getRandom(0, window.innerHeight - img.height) }
             ];
         } else {
-            // For non-mobile devices, position the images randomly within the outer thirds of the window
             const outerThirdWidth = window.innerWidth / 3;
             const outerThirdHeight = window.innerHeight / 3;
             positions = [
