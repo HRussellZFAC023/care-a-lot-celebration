@@ -11,15 +11,26 @@ export const createAndPositionStickers = () => {
     stickers = stickers.sort(() => Math.random() - 0.5);
 
     const positionStickers = (index, img) => {
-        const outerThirdWidth = window.innerWidth / 3;
-        const outerThirdHeight = window.innerHeight / 3;
-
-        const positions = [
-            { left: getRandom(0, outerThirdWidth - img.width), top: getRandom(0, outerThirdHeight - img.height) },
-            { left: getRandom(2 * outerThirdWidth, window.innerWidth - 2 * img.width), top: getRandom(0, outerThirdHeight - img.height) },
-            { left: getRandom(0, outerThirdWidth - img.width), top: getRandom(2 * outerThirdHeight, window.innerHeight - 2 * img.height) },
-            { left: getRandom(2 * outerThirdWidth, window.innerWidth - 2 * img.width), top: getRandom(2 * outerThirdHeight, window.innerHeight - 2 * img.height) }
-        ];
+        let positions;
+        if (window.innerWidth <= 768) {
+            // For mobile devices, randomly position the images along the edges
+            positions = [
+                { left: getRandom(0, window.innerWidth - img.width), top: 0 },
+                { left: window.innerWidth - img.width, top: getRandom(0, window.innerHeight - img.height) },
+                { left: getRandom(0, window.innerWidth - img.width), top: window.innerHeight - img.height },
+                { left: 0, top: getRandom(0, window.innerHeight - img.height) }
+            ];
+        } else {
+            // For non-mobile devices, position the images randomly within the outer thirds of the window
+            const outerThirdWidth = window.innerWidth / 3;
+            const outerThirdHeight = window.innerHeight / 3;
+            positions = [
+                { left: getRandom(0, outerThirdWidth - img.width), top: getRandom(0, outerThirdHeight - img.height) },
+                { left: getRandom(2 * outerThirdWidth, window.innerWidth - 2 * img.width), top: getRandom(0, outerThirdHeight - img.height) },
+                { left: getRandom(0, outerThirdWidth - img.width), top: getRandom(2 * outerThirdHeight, window.innerHeight - 2 * img.height) },
+                { left: getRandom(2 * outerThirdWidth, window.innerWidth - 2 * img.width), top: getRandom(2 * outerThirdHeight, window.innerHeight - 2 * img.height) }
+            ];
+        }
 
         img.style.left = `${positions[index].left}px`;
         img.style.top = `${positions[index].top}px`;
