@@ -5,8 +5,8 @@ import { createAndPositionStickers } from './sticker.js';
 window.onload = (() => {
 
   const app = document.querySelector('#app');
-  const canvas = createCanvas()
-  app.appendChild(canvas);
+  const canvasContainer = createCanvas()
+  app.appendChild(canvasContainer);
   resizeAndDrawCanvas();
   window.addEventListener('resize', resizeAndDrawCanvas);
 
