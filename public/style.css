@@ -202,7 +202,9 @@ body {
 .cute-button:hover {
     transform: scale(1.3);
 }
-
+.tiktok-embed {
+    z-index: 2; /* Higher than the buttons */
+}
 .yes-button {
     background-color: var(--yes-button);
     color: var(--yes-button-text);

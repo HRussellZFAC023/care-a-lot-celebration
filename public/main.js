@@ -5,6 +5,8 @@ import { drawArrow, drawCareOMeter } from './care-o-meta.js';
 import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
 
 window.onload = (() => {
+  document.querySelector('.tiktok-embed').style.display = 'none';
+
 
   const app = document.querySelector('#app');
 
@@ -38,16 +40,24 @@ window.onload = (() => {
 
 
 let arrowAngle = Math.PI * 2;
-
+let noCount = 0;
 export const animateArrow = (canvas, direction) => {
   const angleChange = direction === 'up' ? 0.3 : -0.3;
+
+
   const animationInterval = setInterval(() => {
     arrowAngle += angleChange;
+
+
+    if (arrowAngle <= (Math.PI * 2) - 0.3 * 3) {
+      console.log("show tiktok");
+      document.querySelector('.tiktok-embed').style.display = 'block';
+      arrowAngle = Math.PI * 2;
+    }
     resizeAndDrawCanvas();
 
-  
-      clearInterval(animationInterval);
-   }, 50);
+    clearInterval(animationInterval);
+  }, 50);
 };
 
 const createButton = (text, direction) => {
@@ -69,6 +79,7 @@ const resizeAndDrawCanvas = () => {
   drawArrow(canvas, arrowAngle);
 };
 
-export function hideTikTok() {
+
+document.querySelector('#hideTikTok').addEventListener('click', function () {
   document.querySelector('.tiktok-embed').style.display = 'none';
-}
+});
