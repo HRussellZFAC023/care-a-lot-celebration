@@ -5,7 +5,6 @@ import { drawArrow, drawCareOMeter } from './care-o-meta.js';
 import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
 
 window.onload = (() => {
-  document.querySelector('.tiktok-embed').style.display = 'none';
 
 
   const app = document.querySelector('#app');
