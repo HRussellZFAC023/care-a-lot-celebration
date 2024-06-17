@@ -24,6 +24,10 @@ function drawHeart(ctx, canvas) {
     ctx.bezierCurveTo(canvas.width / 2 + 160, canvas.height / 4 - 120, canvas.width / 2 + 160, canvas.height / 4 + 120, canvas.width / 2, canvas.height / 4 + 160);
     ctx.bezierCurveTo(canvas.width / 2 - 160, canvas.height / 4 + 120, canvas.width / 2 - 160, canvas.height / 4 - 120, canvas.width / 2, canvas.height / 4);
     ctx.fillStyle = '#ff6161'; // Heart color
+    ctx.strokeStyle = shadeColor('#ff6161', -10); // Heart border color
+    ctx.lineWidth = 5;
+    ctx.closePath();
+    ctx.stroke();
     ctx.fill();
 }
 
@@ -83,12 +87,10 @@ const drawRaincloud = (ctx, canvasWidth, canvasHeight) => {
     const centerY = canvasHeight * 0.2 - 40;
     const radius = 30;
 
-    // Use pastel colors for the cloud
-    const cloudColor = '#555555'; // Dark grey
-    const rainColor = '#ADD8E6'; // Light blue for rain
-    const lightningColor = '#FFFACD'; // Lemon chiffon for lightning
+    const cloudColor = '#555555';
+    const rainColor = '#ADD8E6'; 
+    const lightningColor = '#FFFACD'; 
 
-    // Draw the cloud with pastel color
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, Math.PI * 0.5, Math.PI * 1.5, false);
     ctx.arc(centerX + 30, centerY - 20, radius, Math.PI * 1.15, Math.PI * 2, false);
@@ -97,7 +99,6 @@ const drawRaincloud = (ctx, canvasWidth, canvasHeight) => {
     ctx.fillStyle = cloudColor;
     ctx.fill();
 
-    // Draw the rain with pastel color
     for (let i = 0; i < 5; i++) {
         ctx.beginPath();
         ctx.moveTo(centerX + 5 + i * 10, centerY + 10);
@@ -111,7 +112,6 @@ const drawRaincloud = (ctx, canvasWidth, canvasHeight) => {
         ctx.stroke();
     }
 
-    // Draw the lightning bolt with pastel color
     ctx.beginPath();
     ctx.moveTo(centerX + 55, centerY + 10);
     ctx.lineTo(centerX + 65, centerY + 25);

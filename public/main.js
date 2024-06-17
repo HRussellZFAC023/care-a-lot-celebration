@@ -19,6 +19,21 @@ window.onload = (() => {
   const stickerElements = createAndPositionStickers();
   stickerElements.forEach(sticker => app.appendChild(sticker));
 
+  const contentContainer = document.createElement('div');
+  const buttonContainer = document.createElement('div');
+  contentContainer.className = 'content-container';
+  buttonContainer.className = 'button-container';
+  const yesButton = createButton('Yes', 'up');
+  yesButton.className = 'yes-button';
+  const noButton = createButton('No', 'down');
+  noButton.className = 'no-button';
+  buttonContainer.appendChild(noButton);
+  buttonContainer.appendChild(yesButton);
+
+  contentContainer.appendChild(buttonContainer);
+
+  app.appendChild(contentContainer);
+
 });
 
 
@@ -36,6 +51,12 @@ export const animateArrow = (canvas, direction) => {
   }, 50);
 };
 
+const createButton = (text, direction) => {
+  const button = document.createElement('button');
+  button.textContent = text;
+  button.onclick = () => animateArrow(document.querySelector('.canvas'), direction);
+  return button;
+};
 
 
 const resizeAndDrawCanvas = () => {
