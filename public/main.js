@@ -40,15 +40,14 @@ window.onload = (() => {
 let arrowAngle = Math.PI * 2;
 
 export const animateArrow = (canvas, direction) => {
-  const angleChange = direction === 'up' ? 0.1 : -0.1;
+  const angleChange = direction === 'up' ? 0.6 : -0.6;
   const animationInterval = setInterval(() => {
     arrowAngle += angleChange;
     resizeAndDrawCanvas();
 
-    if (arrowAngle <= 0 || arrowAngle >= 2 * Math.PI) {
+  
       clearInterval(animationInterval);
-    }
-  }, 50);
+   }, 50);
 };
 
 const createButton = (text, direction) => {

@@ -121,7 +121,7 @@ body {
     .puff {
         width: 5em;
         height: 2.5em;
-        z-index: -1;
+        z-index: 0;
     }
 
 
