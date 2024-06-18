@@ -27,8 +27,6 @@ const displayBirthdayMessage = () => {
 }
 
 window.onload = (() => {
-
-
   const app = document.querySelector('#app');
   const bannerImage = new Image();
   bannerImage.src = banner;

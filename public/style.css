@@ -162,20 +162,16 @@ body {
     min-width: 7em;
     z-index: 3;
 }
-
 .content-container {
     display: grid;
     position: absolute;
     top: 50%;
-
     left: 0;
     width: 100%;
-    height: 50%;
-
     justify-items: center;
     align-items: start;
     grid-gap: 20px;
-
+    grid-auto-flow: row;
 }
 
 
@@ -198,12 +194,12 @@ body {
 }
 
 .cute-button {
-    padding: 1.25em 2.5em; 
-    border-radius: 6.25em; 
+    padding: 1.25em 2.5em;
+    border-radius: 6.25em;
     border: none;
     cursor: pointer;
     transition: transform 0.2s;
-    width: 12.5em; 
+    width: 12.5em;
     z-index: 1;
     margin: 0 auto;
     font-size: 1.25em;
