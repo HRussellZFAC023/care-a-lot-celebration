@@ -43,14 +43,10 @@ export const createAndPositionStickers = () => {
         stickerElements.push(img);
     });
 
-    let lastWidth = window.innerWidth;
 
     window.addEventListener('resize', () => {
-        let currentWidth = window.innerWidth;
-        if (currentWidth !== lastWidth) {
-            stickers.forEach((_, index) => positionStickers(index, stickerElements[index]));
-            lastWidth = currentWidth;
-        }
+
+        stickers.forEach((_, index) => positionStickers(index, stickerElements[index]));
     });
 
     return stickerElements;

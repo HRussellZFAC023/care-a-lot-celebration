@@ -167,36 +167,46 @@ body {
     display: grid;
     position: absolute;
     top: 50%;
-    /* Adjust this value to position the container below the heart */
+
     left: 0;
     width: 100%;
     height: 50%;
-    /* Adjust this value based on the size of the heart */
+
     justify-items: center;
     align-items: start;
     grid-gap: 20px;
-    /* Adjust this value to add space between grid items */
+
 }
 
+
+.message {
+    font-size: 1.5em;
+    text-align: center;
+    background-color: var(--light-yellow);
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    max-width: 66vw;
+}
 
 
 .button-wrapper {
     display: flex;
     justify-content: center;
-    gap: 1.5em;
-    margin-top: 1.5em;
+    gap: 3em;
+
 }
 
 .cute-button {
-    padding: 0.625em 1.25em;
-    border-radius: 3.125em;
+    padding: 1.25em 2.5em; 
+    border-radius: 6.25em; 
     border: none;
-    color: white;
     cursor: pointer;
     transition: transform 0.2s;
-    width: 6.25em;
+    width: 12.5em; 
     z-index: 1;
     margin: 0 auto;
+    font-size: 1.25em;
 }
 
 .cute-button:hover {
@@ -204,7 +214,7 @@ body {
 }
 
 .tiktok-embed {
-    z-index: 2;
+    z-index: 6;
 }
 
 .yes-button {
@@ -217,4 +227,15 @@ body {
     background-color: var(--no-button);
     color: var(--no-button-text);
     border: 2px solid var(--no-button-border);
+}
+
+#birthday-banner {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25vw;
+    min-width: 10em;
+    z-index: 5;
+    max-width: 33vh;
 }
