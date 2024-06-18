@@ -31,7 +31,7 @@ window.onload = (() => {
   const bannerImage = new Image();
   bannerImage.src = banner;
   bannerImage.className = 'banner';
-  // app.appendChild(bannerImage);
+  app.appendChild(bannerImage);
 
   const canvasContainer = createCanvas()
   app.appendChild(canvasContainer);
@@ -51,7 +51,7 @@ window.onload = (() => {
 
   const messageParagraph = document.createElement('p');
   messageParagraph.className = 'message';
-  contentContainer.appendChild(messageParagraph);
+  // contentContainer.appendChild(messageParagraph);
 
   const yesButton = createButton('Yes', 'up');
   yesButton.className = 'cute-button yes-button';
