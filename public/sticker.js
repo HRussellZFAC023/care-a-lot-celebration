@@ -14,10 +14,11 @@ export const createAndPositionStickers = () => {
         let positions;
         if (window.innerWidth <= 768) {
             positions = [
-                { left: getRandom(0, window.innerWidth - img.width), top: 0 },
-                { left: window.innerWidth - img.width, top: getRandom(0, window.innerHeight - img.height) },
-                { left: getRandom(0, window.innerWidth - img.width), top: window.innerHeight - img.height },
-                { left: 0, top: getRandom(0, window.innerHeight - img.height) }
+                { left: 0, top: getRandom(0, window.innerHeight / 2 - img.height) }, 
+                { left: 0, top: getRandom(window.innerHeight / 2, window.innerHeight - img.height) }, 
+                { left: window.innerWidth - img.width, top: getRandom(0, window.innerHeight / 2 - img.height) }, 
+                { left: window.innerWidth - img.width, top: getRandom(window.innerHeight / 2, window.innerHeight - img.height) }
+
             ];
         } else {
             const outerThirdWidth = window.innerWidth / 3;
