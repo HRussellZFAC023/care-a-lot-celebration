@@ -4,13 +4,13 @@ import { createAndPositionStickers } from './sticker.js';
 import { drawArrow, drawCareOMeter } from './care-o-meta.js';
 import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
 import banner from "./assets/banner.png";
+
 const messages = [
   "Mary, would you let me make your post-birthday celebration extra special?",
   "How about we continue the birthday celebration when you're back?",
-  "Can I have the honor of celebrating your birthday with a belated surprise?",
   "Would you like to extend your birthday celebration with a special day out?",
-  "Your birthday might be over, but the celebration doesn't have to be. Shall we?",
-  "How about a post-birthday adventure together?"
+  "And just to be sure, our adventure will also be... a date, right? 😊🌹"
+
 ];
 
 let currentMessageIndex = 0;
@@ -62,33 +62,21 @@ window.onload = (() => {
   buttonContainer.appendChild(yesButton);
   contentContainer.appendChild(buttonContainer);
 
-
-
-
   app.appendChild(contentContainer);
-  // Display the first message when the page loads
   displayBirthdayMessage();
 });
 
 
 let arrowAngle = Math.PI * 2;
-export const animateArrow = (canvas, direction) => {
+export const animateArrow = (direction) => {
   const angleChange = direction === 'up' ? 0.3 : -0.3;
-
-
-
   arrowAngle += angleChange;
-
-
   if (arrowAngle <= (Math.PI * 2) - 0.3 * 3) {
     console.log("show tiktok");
     document.querySelector('.tiktok-embed').style.display = 'block';
     arrowAngle = Math.PI * 2;
   }
   resizeAndDrawCanvas();
-
-
-
 };
 
 const createButton = (text, direction) => {
@@ -96,11 +84,11 @@ const createButton = (text, direction) => {
   button.textContent = text;
   if (text === 'Yes') {
     button.onclick = () => {
-      animateArrow(document.querySelector('.canvas'), direction);
+      animateArrow(direction);
       displayBirthdayMessage();
     };
   } else {
-    button.onclick = () => animateArrow(document.querySelector('.canvas'), direction);
+    button.onclick = () => animateArrow(direction);
   }
   return button;
 };
