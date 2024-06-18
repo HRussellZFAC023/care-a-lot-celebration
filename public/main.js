@@ -31,7 +31,7 @@ window.onload = (() => {
   const bannerImage = new Image();
   bannerImage.src = banner;
   bannerImage.className = 'banner';
-  app.appendChild(bannerImage);
+  // app.appendChild(bannerImage);
 
   const canvasContainer = createCanvas()
   app.appendChild(canvasContainer);
