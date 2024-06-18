@@ -133,7 +133,7 @@ body {
     width: 100%;
     justify-items: center;
     align-items: start;
-    grid-gap: 20px;
+    grid-gap: 1em;
     grid-auto-flow: row;
 }
 
@@ -145,7 +145,8 @@ body {
     padding: 1em;
     border-radius: 1em;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
-    max-width: 66vw;
+    max-width: 45vw;
+
 }
 
 
@@ -214,10 +215,18 @@ body {
         font-size: 1.1em;
     }
 
+    .button-wrapper {
+        gap: 1em;
+    }
 
 
     .content-container {
         font-size: 1em;
+    }
+
+    .message {
+        font-size: 1.5em;
+        margin: 0;
     }
 
 }

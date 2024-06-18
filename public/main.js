@@ -51,7 +51,7 @@ window.onload = (() => {
 
   const messageParagraph = document.createElement('p');
   messageParagraph.className = 'message';
-  // contentContainer.appendChild(messageParagraph);
+  contentContainer.appendChild(messageParagraph);
 
   const yesButton = createButton('Yes', 'up');
   yesButton.className = 'cute-button yes-button';
