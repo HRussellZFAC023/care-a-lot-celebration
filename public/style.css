@@ -116,54 +116,7 @@ body {
 
 
 
-@media screen and (max-width: 768px) {
 
-    .cloud,
-    .puff {
-        width: 15vw;
-        height: 2.5em;
-
-    }
-    .cute-button {
-        width: 11em;
-        font-size: 1.1em; 
-    }
-
-
-
-    .content-container {
-        font-size: 1em;
-    }
-
-}
-
-@media screen and (min-width: 1024px) {
-
-    .cloud,
-    .puff {
-        width: 10em;
-        height: 5em;
-    }
-}
-
-@media screen and (min-width: 1440px) {
-
-    .cloud,
-    .puff {
-        width: 15em;
-        height: 7.5em;
-    }
-}
-
-
-@media screen and (min-width: 1920px) {
-
-    .cloud,
-    .puff {
-        width: 20em;
-        height: 10em;
-    }
-}
 
 .sticker {
     position: fixed;
@@ -171,6 +124,7 @@ body {
     min-width: 7em;
     z-index: 3;
 }
+
 .content-container {
     display: grid;
     position: absolute;
@@ -243,4 +197,55 @@ body {
     min-width: 10em;
     z-index: 5;
     max-width: 33vh;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .cloud,
+    .puff {
+        width: 15vw;
+        height: 2.5em;
+
+    }
+
+    .cute-button {
+        width: 8em;
+        font-size: 1.1em;
+    }
+
+
+
+    .content-container {
+        font-size: 1em;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+    .cloud,
+    .puff {
+        width: 10em;
+        height: 5em;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    .cloud,
+    .puff {
+        width: 15em;
+        height: 7.5em;
+    }
+}
+
+
+@media screen and (min-width: 1920px) {
+
+    .cloud,
+    .puff {
+        width: 20em;
+        height: 10em;
+    }
 }
