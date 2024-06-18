@@ -124,7 +124,16 @@ body {
         height: 2.5em;
 
     }
+    .cute-button {
+        width: 11em;
+        font-size: 1.1em; 
+    }
 
+
+
+    .content-container {
+        font-size: 1em;
+    }
 
 }
 
