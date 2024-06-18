@@ -68,13 +68,28 @@ window.onload = (() => {
 
 
 let arrowAngle = Math.PI * 2;
+let interval;
 export const animateArrow = (direction) => {
   const angleChange = direction === 'up' ? 0.3 : -0.3;
   arrowAngle += angleChange;
+
+  clearInterval(interval);
+
+
   if (arrowAngle <= (Math.PI * 2) - 0.3 * 3) {
     console.log("show tiktok");
     document.querySelector('.tiktok-embed').style.display = 'block';
     arrowAngle = Math.PI * 2;
+  }
+  if (arrowAngle >= Math.PI * 2 + 0.3 * 4) {
+    console.log("All messages have been displayed");
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+      arrowAngle += angleChange;
+      resizeAndDrawCanvas();
+    }, 10);
+
   }
   resizeAndDrawCanvas();
 };
