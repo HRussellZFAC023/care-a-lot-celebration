@@ -70,18 +70,29 @@ window.onload = (() => {
 let arrowAngle = Math.PI * 2;
 let interval;
 export const animateArrow = (direction) => {
-  const angleChange = direction === 'up' ? 0.3 : -0.3;
+  const upAngleChange = 0.3;
+  const downAngleChange = -0.3;
+  const startAngle = Math.PI * 2;
+  const tikTokDisplayAngle = startAngle - 0.3 * 3;
+  const messageDisplayAngle = startAngle + 0.3 * 4;
+
+  const angleChange = direction === 'up' ? upAngleChange : downAngleChange;
   arrowAngle += angleChange;
 
-  clearInterval(interval);
+  if (direction === 'down' && arrowAngle >= messageDisplayAngle) {
+    clearInterval(interval);
+    interval = null;
+    arrowAngle = startAngle;
+    resizeAndDrawCanvas();
+  }
 
-
-  if (arrowAngle <= (Math.PI * 2) - 0.3 * 3) {
+  if (arrowAngle <= tikTokDisplayAngle) {
     console.log("show tiktok");
     document.querySelector('.tiktok-embed').style.display = 'block';
-    arrowAngle = Math.PI * 2;
+    arrowAngle = startAngle;
   }
-  if (arrowAngle >= Math.PI * 2 + 0.3 * 4) {
+
+  if (arrowAngle >= messageDisplayAngle) {
     console.log("All messages have been displayed");
     clearInterval(interval);
 
@@ -90,10 +101,16 @@ export const animateArrow = (direction) => {
       resizeAndDrawCanvas();
     }, 10);
 
+    setTimeout(() => {
+      clearInterval(interval);
+      interval = null;
+      arrowAngle = resetAngle;
+      resizeAndDrawCanvas();
+    }, 1000);
   }
+
   resizeAndDrawCanvas();
 };
-
 const createButton = (text, direction) => {
   const button = document.createElement('button');
   button.textContent = text;
