@@ -325,22 +325,40 @@ body {
     color: var(--yes-button-text);
     margin-bottom: 1em;
 }
+
 .time-of-day-select,
 .food-select,
 .dessert-select,
 .location-select {
-  display: block;
-  width: 100%;
-  padding: 0.5em;
-  margin-bottom: 1em;
-  border-radius: 1em;
-  border: 1px solid var(--light-blue);
-  background-color: var(--light-yellow);
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    border: 1px solid var(--light-blue);
+    background-color: var(--light-yellow);
 }
 
 .label {
-  display: block;
-  margin-bottom: 0.5em;
-  color: var(--light-purple);
-  text-align: center;
+    display: block;
+    margin-bottom: 0.5em;
+    color: var(--light-purple);
+    text-align: center;
+}
+
+.fade-out {
+    transition: opacity 0.5s ease-out;
+    opacity: 0;
+}
+
+@keyframes growAndFade {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
 }

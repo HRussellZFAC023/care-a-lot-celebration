@@ -6,6 +6,29 @@ import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
 import banner from "./assets/banner.png";
 
 
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+import { collection, addDoc } from "firebase/firestore";
+
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+console.log(import.meta.env)
+
+
 const messages = [
   "Mary, would you let me make your post-birthday celebration extra special?",
   "How about we continue the celebration when you're back?",
@@ -15,8 +38,6 @@ const messages = [
 ];
 
 let currentMessageIndex = 0;
-
-
 
 
 const createPopoverWizard = () => {
@@ -49,8 +70,6 @@ const createPopoverWizard = () => {
   submitButton.className = 'cute-button submit-button';
 
 
-
-  // Add a select for choosing morning or evening
   const timeOfDayLabel = document.createElement('label');
   timeOfDayLabel.textContent = "What's the best time for our date? 🌅🌃";
   const timeOfDaySelect = document.createElement('select');
@@ -62,19 +81,17 @@ const createPopoverWizard = () => {
     timeOfDaySelect.appendChild(option);
   });
 
-  // Add a select for choosing the type of food
   const foodLabel = document.createElement('label');
   foodLabel.textContent = "What cuisine shall we indulge in? 🍽️";
   const foodSelect = document.createElement('select');
   foodSelect.className = 'food-select';
-  ['Korean BBQ 🥩', 'Sushi 🍣', 'Italian 🍝', 'French 🥐'].forEach((food) => {
+  ['Korean BBQ 🥩', 'Sushi 🍣', 'Picnic 🧺', 'Italian 🍝', 'French 🥐',].forEach((food) => {
     const option = document.createElement('option');
     option.value = food;
     option.textContent = food;
     foodSelect.appendChild(option);
   });
 
-  // Add a select for choosing the dessert
   const dessertLabel = document.createElement('label');
   dessertLabel.textContent = "Which sweet treat shall we share? 🍨";
   const dessertSelect = document.createElement('select');
@@ -85,13 +102,12 @@ const createPopoverWizard = () => {
     option.textContent = dessert;
     dessertSelect.appendChild(option);
   });
-
-  // Add a select for choosing the date location
   const locationLabel = document.createElement('label');
-  locationLabel.textContent = "Where shall our whimsical date take us? 🎡";
+  locationLabel.textContent = "Where shall our magical date take us? 🎠";
   const locationSelect = document.createElement('select');
   locationSelect.className = 'location-select';
-  ['Aquarium 🐠', 'Cinema 🎬', 'Park 🌳', 'Coffee Shop ☕', 'Art Exhibition 🖼️', 'Rooftop Bar 🍸', 'Helicopter Tour 🚁'].forEach((location) => {
+
+  ['Aquarium 🐠', 'Movies 🎬', 'Park 🌳', 'Coffee Shop ☕', 'Exhibition 🖼️', 'Rooftop Bar 🍸', 'Helicopter Tour 🚁', 'Theme Park 🎡', 'Shopping 🛍️'].forEach((location) => {
     const option = document.createElement('option');
     option.value = location;
     option.textContent = location;
@@ -109,12 +125,40 @@ const createPopoverWizard = () => {
   form.appendChild(locationLabel);
   form.appendChild(locationSelect);
   form.appendChild(submitButton);
-
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    console.log('Selected date:', datePickerInput.value);
-    // Here you can handle the submission of the date
-    popover.remove();
+    const formValues = {
+      date: datePickerInput.value,
+      timeOfDay: timeOfDaySelect.value,
+      cuisine: foodSelect.value,
+      dessert: dessertSelect.value,
+      location: locationSelect.value
+    };
+
+    console.log('Form values:', formValues);
+
+    try {
+      const docRef = await addDoc(collection(db, "responses"), formValues);
+      console.log("Document written with ID: ", docRef.id);
+      popover.classList.add('fade-out');
+
+      const heartDiv = document.createElement('div');
+      heartDiv.textContent = '💌';
+      heartDiv.style.position = 'fixed';
+      heartDiv.style.left = 'calc(50% - 25px)';
+      heartDiv.style.top = 'calc(50% - 25px)';
+      heartDiv.style.fontSize = '50px';
+      heartDiv.style.zIndex = '9999';
+      heartDiv.style.animation = 'growAndFade 2s forwards';
+      document.body.appendChild(heartDiv);
+
+      setTimeout(() => {
+        popover.remove();
+        heartDiv.remove();
+      }, 2000);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   });
 
   popover.appendChild(form);

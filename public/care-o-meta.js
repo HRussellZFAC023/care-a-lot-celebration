@@ -23,8 +23,8 @@ function drawHeart(ctx, canvas) {
     ctx.moveTo(canvas.width / 2, canvas.height / 4);
     ctx.bezierCurveTo(canvas.width / 2 + 160, canvas.height / 4 - 120, canvas.width / 2 + 160, canvas.height / 4 + 120, canvas.width / 2, canvas.height / 4 + 160);
     ctx.bezierCurveTo(canvas.width / 2 - 160, canvas.height / 4 + 120, canvas.width / 2 - 160, canvas.height / 4 - 120, canvas.width / 2, canvas.height / 4);
-    ctx.fillStyle = '#ff6161'; // Heart color
-    ctx.strokeStyle = shadeColor('#ff6161', -10); // Heart border color
+    ctx.fillStyle = '#ff6161';
+    ctx.strokeStyle = shadeColor('#ff6161', -10);
     ctx.lineWidth = 5;
     ctx.closePath();
     ctx.stroke();
@@ -42,11 +42,11 @@ const drawRainbow = (ctx, canvasWidth, canvasHeight) => {
         '#FF9CEE',
     ];
 
-    const borderWidth = 4; 
+    const borderWidth = 4;
 
     for (let i = 0; i < pastelRainbowColors.length; i++) {
         const radius = 40 + i * 10;
-        const borderColor = shadeColor(pastelRainbowColors[i], -10); 
+        const borderColor = shadeColor(pastelRainbowColors[i], -10);
 
         ctx.beginPath();
         ctx.arc(canvasWidth * 0.75, canvasHeight * 0.2, radius + borderWidth, Math.PI, 2 * Math.PI, false);
@@ -88,8 +88,8 @@ const drawRaincloud = (ctx, canvasWidth, canvasHeight) => {
     const radius = 30;
 
     const cloudColor = '#555555';
-    const rainColor = '#ADD8E6'; 
-    const lightningColor = '#FFFACD'; 
+    const rainColor = '#ADD8E6';
+    const lightningColor = '#FFFACD';
 
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, Math.PI * 0.5, Math.PI * 1.5, false);
