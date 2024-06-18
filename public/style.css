@@ -229,7 +229,7 @@ body {
     border: 2px solid var(--no-button-border);
 }
 
-#birthday-banner {
+.banner {
     position: absolute;
     top: 0;
     left: 50%;

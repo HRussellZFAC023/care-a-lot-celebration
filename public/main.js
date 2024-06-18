@@ -3,7 +3,7 @@ import { createAndPositionClouds } from './cloud.js'
 import { createAndPositionStickers } from './sticker.js';
 import { drawArrow, drawCareOMeter } from './care-o-meta.js';
 import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
-
+import banner from "./assets/banner.png";
 const messages = [
   "Mary, would you let me make your post-birthday celebration extra special?",
   "How about we continue the birthday celebration when you're back?",
@@ -23,12 +23,17 @@ const displayBirthdayMessage = () => {
     currentMessageIndex++;
   } else {
     console.log("No more messages");
-  }}
+  }
+}
 
 window.onload = (() => {
 
 
   const app = document.querySelector('#app');
+  const bannerImage = new Image();
+  bannerImage.src = banner;
+  bannerImage.className = 'banner';
+  app.appendChild(bannerImage);
 
   const canvasContainer = createCanvas()
   app.appendChild(canvasContainer);
