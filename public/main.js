@@ -75,16 +75,11 @@ export const animateArrow = (direction) => {
   const startAngle = Math.PI * 2;
   const tikTokDisplayAngle = startAngle - 0.3 * 3;
   const messageDisplayAngle = startAngle + 0.3 * 4;
+  const stopAngle = startAngle * 3 + 0.3 * 6;
 
   const angleChange = direction === 'up' ? upAngleChange : downAngleChange;
   arrowAngle += angleChange;
 
-  if (direction === 'down' && arrowAngle >= messageDisplayAngle) {
-    clearInterval(interval);
-    interval = null;
-    arrowAngle = startAngle;
-    resizeAndDrawCanvas();
-  }
 
   if (arrowAngle <= tikTokDisplayAngle) {
     console.log("show tiktok");
@@ -99,15 +94,16 @@ export const animateArrow = (direction) => {
     interval = setInterval(() => {
       arrowAngle += angleChange;
       resizeAndDrawCanvas();
-    }, 10);
 
-    setTimeout(() => {
-      clearInterval(interval);
-      interval = null;
-      arrowAngle = resetAngle;
-      resizeAndDrawCanvas();
-    }, 1000);
+      if (arrowAngle >= stopAngle) {
+        arrowAngle = messageDisplayAngle;
+
+        clearInterval(interval);
+        interval = null;
+      }
+    }, 10);
   }
+
 
   resizeAndDrawCanvas();
 };
