@@ -194,7 +194,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 25vw;
-    min-width: 9em;
+    min-width: 10em;
     z-index: 5;
     max-width: 33vh;
 }
