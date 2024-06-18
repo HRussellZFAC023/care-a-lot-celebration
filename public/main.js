@@ -7,10 +7,10 @@ import banner from "./assets/banner.png";
 
 const messages = [
   "Mary, would you let me make your post-birthday celebration extra special?",
-  "How about we continue the birthday celebration when you're back?",
-  "Would you like to extend your birthday celebration with a special day out?",
-  "And just to be sure, our adventure will also be... a date, right? 😊🌹"
-
+  "How about we continue the celebration when you're back?",
+  "Would you like to extend your birthday with a special day out?",
+  "Just us two, creating moments to remember...",
+  "It's a date, right? 😊🌹"
 ];
 
 let currentMessageIndex = 0;
