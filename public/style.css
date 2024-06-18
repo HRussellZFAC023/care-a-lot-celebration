@@ -70,14 +70,27 @@ body {
     0% {
         transform: translatey(0px);
     }
+
     50% {
         transform: translatey(-10px);
     }
+
     100% {
         transform: translatey(0px);
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: 1;
+
+    }
+}
 
 .cloud {
     border-radius: 50%;
@@ -110,6 +123,7 @@ body {
     width: 66.67vw;
     height: 66.67vh;
     border-radius: 1em;
+    border: 2px solid var(--light-yellow);
 }
 
 
@@ -255,4 +269,78 @@ body {
         width: 20em;
         height: 10em;
     }
+}
+
+
+.popover-wizard {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 33.33vw;
+    max-width: 400px;
+    min-width: 300px;
+    background-color: var(--light-pink);
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-out;
+    border: 2px solid var(--light-yellow);
+
+}
+
+.popover-wizard label,
+.popover-wizard button {
+    display: block;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.popover-wizard button {
+    background-color: var(--yes-button);
+    color: var(--yes-button-text);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popover-wizard button:hover {
+    background-color: var(--yes-button-border);
+}
+
+.date-picker-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.quote {
+    font-size: 1em;
+    text-align: center;
+    color: var(--yes-button-text);
+    margin-bottom: 1em;
+}
+.time-of-day-select,
+.food-select,
+.dessert-select,
+.location-select {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  border: 1px solid var(--light-blue);
+  background-color: var(--light-yellow);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: var(--light-purple);
+  text-align: center;
 }

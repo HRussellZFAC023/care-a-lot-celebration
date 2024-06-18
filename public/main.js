@@ -5,6 +5,7 @@ import { drawArrow, drawCareOMeter } from './care-o-meta.js';
 import { createCanvas, drawBackground, drawFrills } from './canvasBg.js';
 import banner from "./assets/banner.png";
 
+
 const messages = [
   "Mary, would you let me make your post-birthday celebration extra special?",
   "How about we continue the celebration when you're back?",
@@ -16,15 +17,125 @@ const messages = [
 let currentMessageIndex = 0;
 
 
+
+
+const createPopoverWizard = () => {
+  const popover = document.createElement('div');
+  popover.className = 'popover-wizard';
+
+  const quote = document.createElement('p');
+  quote.className = 'quote';
+  quote.textContent = "For each thorn, there's a rosebud... For each twilight - a dawn... For each trial - the strength to carry on, For each storm cloud - a rainbow... For each shadow - the sun... For each parting - sweet memories when sorrow is done.";
+  popover.appendChild(quote);
+
+  const form = document.createElement('form');
+  form.className = 'date-form';
+
+  const label = document.createElement('label');
+  label.textContent = "Mary, you've just made me the happiest! Now, for the cherry on top, when can I steal you away for our date? 🍒";
+  label.className = 'date-label';
+
+  const datePickerContainer = document.createElement('div');
+  datePickerContainer.className = 'date-picker-container';
+
+  const datePickerInput = document.createElement('input');
+  datePickerInput.type = 'date';
+  datePickerInput.className = 'date-picker';
+  datePickerContainer.appendChild(datePickerInput);
+
+  const submitButton = document.createElement('button');
+  submitButton.type = 'submit';
+  submitButton.textContent = 'Submit';
+  submitButton.className = 'cute-button submit-button';
+
+
+
+  // Add a select for choosing morning or evening
+  const timeOfDayLabel = document.createElement('label');
+  timeOfDayLabel.textContent = "What's the best time for our date? 🌅🌃";
+  const timeOfDaySelect = document.createElement('select');
+  timeOfDaySelect.className = 'time-of-day-select';
+  ['Morning 🌅', 'Evening 🌃'].forEach((time) => {
+    const option = document.createElement('option');
+    option.value = time;
+    option.textContent = time;
+    timeOfDaySelect.appendChild(option);
+  });
+
+  // Add a select for choosing the type of food
+  const foodLabel = document.createElement('label');
+  foodLabel.textContent = "What cuisine shall we indulge in? 🍽️";
+  const foodSelect = document.createElement('select');
+  foodSelect.className = 'food-select';
+  ['Korean BBQ 🥩', 'Sushi 🍣', 'Italian 🍝', 'French 🥐'].forEach((food) => {
+    const option = document.createElement('option');
+    option.value = food;
+    option.textContent = food;
+    foodSelect.appendChild(option);
+  });
+
+  // Add a select for choosing the dessert
+  const dessertLabel = document.createElement('label');
+  dessertLabel.textContent = "Which sweet treat shall we share? 🍨";
+  const dessertSelect = document.createElement('select');
+  dessertSelect.className = 'dessert-select';
+  ['Boba 🧋', 'Churro 🍫', 'Taiyaki 🐟'].forEach((dessert) => {
+    const option = document.createElement('option');
+    option.value = dessert;
+    option.textContent = dessert;
+    dessertSelect.appendChild(option);
+  });
+
+  // Add a select for choosing the date location
+  const locationLabel = document.createElement('label');
+  locationLabel.textContent = "Where shall our whimsical date take us? 🎡";
+  const locationSelect = document.createElement('select');
+  locationSelect.className = 'location-select';
+  ['Aquarium 🐠', 'Cinema 🎬', 'Park 🌳', 'Coffee Shop ☕', 'Art Exhibition 🖼️', 'Rooftop Bar 🍸', 'Helicopter Tour 🚁'].forEach((location) => {
+    const option = document.createElement('option');
+    option.value = location;
+    option.textContent = location;
+    locationSelect.appendChild(option);
+  });
+
+  form.appendChild(label);
+  form.appendChild(datePickerContainer);
+  form.appendChild(timeOfDayLabel);
+  form.appendChild(timeOfDaySelect);
+  form.appendChild(foodLabel);
+  form.appendChild(foodSelect);
+  form.appendChild(dessertLabel);
+  form.appendChild(dessertSelect);
+  form.appendChild(locationLabel);
+  form.appendChild(locationSelect);
+  form.appendChild(submitButton);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log('Selected date:', datePickerInput.value);
+    // Here you can handle the submission of the date
+    popover.remove();
+  });
+
+  popover.appendChild(form);
+
+  return popover;
+};
+
+
 const displayBirthdayMessage = () => {
   if (currentMessageIndex < messages.length) {
     const message = messages[currentMessageIndex];
     document.querySelector('.message').textContent = message;
     currentMessageIndex++;
   } else {
-    console.log("No more messages");
+    const popover = document.querySelector('.popover-wizard');
+    if (!popover) {
+      const popoverWizard = createPopoverWizard();
+      document.querySelector('#app').appendChild(popoverWizard);
+    }
   }
-}
+};
 
 window.onload = (() => {
   const app = document.querySelector('#app');
